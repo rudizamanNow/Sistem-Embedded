@@ -1,0 +1,305 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Sequence Diagram - mengirim sinyal - Scenario</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Sistem Pintu Otomatis	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="UseCaseDiagram_KiWeQtGFS_nyRQ86.html" class="PageParentTitle">System Pintu Otomatis : System</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="UseCaseDiagram_KiWeQtGFS_nyRQ86.html" class="PageParentTitle">mengirim sinyal : Use Case</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Sequence Diagram - mengirim sinyal - Scenario		</span>
+<a onclick="javascript: showVpLink('Sistem Pintu Otomatis.vpp://diagram/QKfbQdGFS_nyRQ.9', 'mengirim sinyal - Scenario\nSistem Pintu Otomatis.vpp://diagram/QKfbQdGFS_nyRQ.9', 'mengirim sinyal - Scenario', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|110.0|340.0|60.0|InteractionOperand_3KfbQdGFS_nyRQ_S.html|InteractionOperand_3KfbQdGFS_nyRQ_S.html|3KfbQdGFS_nyRQ_R" id="option3KfbQdGFS_nyRQ_R">if : Interaction Operand</option>
+<option value="shape|2.0|170.0|340.0|72.0|InteractionOperand_oqfbQdGFS_nyRQ_b.html|InteractionOperand_oqfbQdGFS_nyRQ_b.html|oqfbQdGFS_nyRQ_a" id="optionoqfbQdGFS_nyRQ_a">else : Interaction Operand</option>
+<option value="shape|2.0|92.0|340.0|150.0|CombinedFragment_3KfbQdGFS_nyRQ_P.html|CombinedFragment_3KfbQdGFS_nyRQ_P.html|jKfbQdGFS_nyRQ_O" id="optionjKfbQdGFS_nyRQ_O">if sinyal true : Combined Fragment</option>
+<option value="shape|22.0|2.0|100.0|35.0|InteractionActor_5KfbQdGFS_nyRQ_B.html|InteractionActor_5KfbQdGFS_nyRQ_B.html|eKfbQdGFS_nyRQ_A" id="optioneKfbQdGFS_nyRQ_A">Sensor proximity : Actor</option>
+<option value="shape|268.0|62.0|8.0|190.0|Activation_jKfbQdGFS_nyRQ_H.html|Activation_jKfbQdGFS_nyRQ_H.html|5KfbQdGFS_nyRQ_G" id="option5KfbQdGFS_nyRQ_G">Activation : Activation</option>
+<option value="shape|222.0|2.0|100.0|35.0|InteractionLifeLine_5KfbQdGFS_nyRQ_E.html|InteractionLifeLine_5KfbQdGFS_nyRQ_E.html|5KfbQdGFS_nyRQ_D" id="option5KfbQdGFS_nyRQ_D">System Pintu Otomatis : Lifeline</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/mengirim_sinyal_Scenario.png" usemap="#diagram_map" class="Image" width="346" height="286"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="66.0, 55.0, 66.0, 69.0, 278.0, 69.0, 278.0, 55.0" coords2="66.0, 55.0, 66.0, 69.0, 278.0, 69.0, 278.0, 55.0" shape="poly" alt="1: Sinyal dikirmkan ke mikrokontroler:Message" id="areadiagram_map_jKfbQdGFS_nyRQ_M_default" href="Message_jKfbQdGFS_nyRQ_J.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','66.0, 55.0, 66.0, 69.0, 278.0, 69.0, 278.0, 55.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Sinyal dikirmkan ke mikrokontroler/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '66.0, 55.0, 66.0, 69.0, 278.0, 69.0, 278.0, 55.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="66.0, 145.0, 66.0, 159.0, 278.0, 159.0, 278.0, 145.0" coords2="66.0, 145.0, 66.0, 159.0, 278.0, 159.0, 278.0, 145.0" shape="poly" alt="2.1: menjalankan perintah membuka pintu:Message" id="areadiagram_map_3KfbQdGFS_nyRQ_Y_default" href="Message_3KfbQdGFS_nyRQ_V.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','66.0, 145.0, 66.0, 159.0, 278.0, 159.0, 278.0, 145.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/menjalankan perintah membuka pintu/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '66.0, 145.0, 66.0, 159.0, 278.0, 159.0, 278.0, 145.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="66.0, 205.0, 66.0, 219.0, 278.0, 219.0, 278.0, 205.0" coords2="66.0, 205.0, 66.0, 219.0, 278.0, 219.0, 278.0, 205.0" shape="poly" alt="3.1: mikrokontroler tetap dalam mode menunggu:Message" id="areadiagram_map_oqfbQdGFS_nyRQ_h_default" href="Message_oqfbQdGFS_nyRQ_e.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','66.0, 205.0, 66.0, 219.0, 278.0, 219.0, 278.0, 205.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/mikrokontroler tetap dalam mode menunggu/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '66.0, 205.0, 66.0, 219.0, 278.0, 219.0, 278.0, 205.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 110, 342, 182.0" coords2="2, 110, 342, 182.0" shape="rect" alt="if:Interaction Operand" id="areadiagram_map_3KfbQdGFS_nyRQ_R_default" href="InteractionOperand_3KfbQdGFS_nyRQ_S.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 110, 342, 170',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/sinyal true/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 110, 342, 170')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 170, 342, 254.0" coords2="2, 170, 342, 254.0" shape="rect" alt="else:Interaction Operand" id="areadiagram_map_oqfbQdGFS_nyRQ_a_default" href="InteractionOperand_oqfbQdGFS_nyRQ_b.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 170, 342, 242',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Unnamed/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 170, 342, 242')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 92, 342, 254.0" coords2="2, 92, 342, 254.0" shape="rect" alt="if sinyal true:Combined Fragment" id="areadiagram_map_jKfbQdGFS_nyRQ_O_default" href="CombinedFragment_3KfbQdGFS_nyRQ_P.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 92, 342, 242',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/sinyal true/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 92, 342, 242')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="22, 2, 122, 49.0" coords2="22, 2, 122, 49.0" shape="rect" alt="Sensor proximity:Actor" id="areadiagram_map_eKfbQdGFS_nyRQ_A_default" href="InteractionActor_5KfbQdGFS_nyRQ_B.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','22, 2, 122, 37',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '22, 2, 122, 37')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="268, 62, 276, 252" coords2="268, 62, 276, 252" shape="rect" alt="Activation:Activation" id="areadiagram_map_5KfbQdGFS_nyRQ_G_default" href="Activation_jKfbQdGFS_nyRQ_H.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="222, 2, 322, 49.0" coords2="222, 2, 322, 49.0" shape="rect" alt="System Pintu Otomatis:Lifeline" id="areadiagram_map_5KfbQdGFS_nyRQ_D_default" href="InteractionLifeLine_5KfbQdGFS_nyRQ_E.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','222, 2, 322, 37',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '222, 2, 322, 37')" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InteractionOperand.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InteractionOperand.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionOperand_3KfbQdGFS_nyRQ_S.html" class="ItemLink">if : Interaction Operand</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InteractionOperand.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InteractionOperand.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionOperand_oqfbQdGFS_nyRQ_b.html" class="ItemLink">else : Interaction Operand</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/CombinedFragmentAlt.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/CombinedFragmentAlt.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="CombinedFragment_3KfbQdGFS_nyRQ_P.html" class="ItemLink">if sinyal true : Combined Fragment</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionActor_5KfbQdGFS_nyRQ_B.html" class="ItemLink">Sensor proximity : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Activation.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Activation.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Activation_jKfbQdGFS_nyRQ_H.html" class="ItemLink">Activation : Activation</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/LifeLine.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/LifeLine.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionLifeLine_5KfbQdGFS_nyRQ_E.html" class="ItemLink">System Pintu Otomatis : Lifeline</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Sistem Pintu Otomatis	</div>
+</body>
+</html>

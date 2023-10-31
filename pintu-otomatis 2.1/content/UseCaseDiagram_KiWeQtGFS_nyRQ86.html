@@ -1,0 +1,353 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Use Case Diagram1</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Sistem Pintu Otomatis	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Use Case Diagram1		</span>
+<a onclick="javascript: showVpLink('Sistem Pintu Otomatis.vpp://diagram/KiWeQtGFS_nyRQ86', 'Use Case Diagram1\nSistem Pintu Otomatis.vpp://diagram/KiWeQtGFS_nyRQ86', 'Use Case Diagram1', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|246.0|2.0|200.0|392.0|System_k8X_QtGFS_nyRRCn.html|System_k8X_QtGFS_nyRRCn.html|E8X.QtGFS_nyRRCm" id="optionE8X.QtGFS_nyRRCm">System Pintu Otomatis : System</option>
+<option value="shape|580.0|245.0|30.0|60.0|Actor_Q1ReQtGFS_nyRQ9R.html|Actor_Q1ReQtGFS_nyRQ9R.html|q1ReQtGFS_nyRQ9S" id="optionq1ReQtGFS_nyRQ9S">Aktuator : Actor</option>
+<option value="shape|18.0|45.0|30.0|60.0|Actor_tiJeQtGFS_nyRQ9g.html|Actor_tiJeQtGFS_nyRQ9g.html|ISJeQtGFS_nyRQ9h" id="optionISJeQtGFS_nyRQ9h">Manusia : Actor</option>
+<option value="shape|643.0|116.0|30.0|60.0|Actor_nrDeQtGFS_nyRQ_j.html|Actor_nrDeQtGFS_nyRQ_j.html|EbDeQtGFS_nyRQ_k" id="optionEbDeQtGFS_nyRQ_k">Sensor proximity : Actor</option>
+<option value="shape|270.0|327.0|150.0|40.0|UseCase_wxpeQtGFS_nyRQ9u.html|UseCase_wxpeQtGFS_nyRQ9u.html|bxpeQtGFS_nyRQ96" id="optionbxpeQtGFS_nyRQ96">masuk ke dalam : Use Case</option>
+<option value="shape|271.0|258.0|146.0|40.0|UseCase_jU5eQtGFS_nyRQ_H.html|UseCase_jU5eQtGFS_nyRQ_H.html|u05eQtGFS_nyRQ.R" id="optionu05eQtGFS_nyRQ.R">membuka pintu : Use Case</option>
+<option value="shape|269.0|45.0|150.0|40.0|UseCase_gZVeQtGFS_nyRQ_e.html|UseCase_gZVeQtGFS_nyRQ_e.html|JZVeQtGFS_nyRQ.o" id="optionJZVeQtGFS_nyRQ.o">mendekati pintu otomatis : Use Case</option>
+<option value="shape|269.0|117.0|151.0|40.0|UseCase_EEteQtGFS_nyRQ_1.html|UseCase_EEteQtGFS_nyRQ_1.html|VEteQtGFS_nyRQ._" id="optionVEteQtGFS_nyRQ._">mendeteksi adanya manusia : Use Case</option>
+<option value="shape|272.0|190.0|147.0|40.0|UseCase_8jdeQtGFS_nyRQ_M.html|UseCase_8jdeQtGFS_nyRQ_M.html|TjdeQtGFS_nyRQ_W" id="optionTjdeQtGFS_nyRQ_W">mengirim sinyal : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Use_Case_Diagram1.png" usemap="#diagram_map" class="Image" width="713" height="398"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="48.0, 58.0, 48.0, 72.0, 269.0, 72.0, 269.0, 58.0" coords2="48.0, 58.0, 48.0, 72.0, 269.0, 72.0, 269.0, 58.0" shape="poly" alt=":Association" id="areadiagram_map_Uma.QtGFS_nyRRBJ_default" href="Association_tGa_QtGFS_nyRRBC.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="127.0, 84.0, 113.0, 88.0, 48.0, 88.0, 48.0, 102.0, 117.29119, 102.0, 188.0, 332.6875, 188.0, 346.0, 192.08046, 346.0, 193.0, 349.0, 207.0, 346.0, 270.0, 346.0, 270.0, 332.0, 202.72519, 332.0, 132.49619, 102.0, 133.0, 102.0, 133.0, 88.0, 128.22137, 88.0, 127.0, 84.0" coords2="127.0, 84.0, 113.0, 88.0, 48.0, 88.0, 48.0, 102.0, 117.29119, 102.0, 188.0, 332.6875, 188.0, 346.0, 192.08046, 346.0, 193.0, 349.0, 207.0, 346.0, 270.0, 346.0, 270.0, 332.0, 202.72519, 332.0, 132.49619, 102.0, 133.0, 102.0, 133.0, 88.0, 128.22137, 88.0, 127.0, 84.0" shape="poly" alt=":Association" id="areadiagram_map___m.QtGFS_nyRRBb_default" href="Association_D_m_QtGFS_nyRRBW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="420.0, 130.0, 420.0, 144.0, 643.0, 144.0, 643.0, 130.0" coords2="420.0, 130.0, 420.0, 144.0, 643.0, 144.0, 643.0, 130.0" shape="poly" alt=":Association" id="areadiagram_map_7I..QtGFS_nyRRBr_default" href="Association_FI__QtGFS_nyRRBm.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="546.0, 155.0, 536.56604, 159.0, 530.0, 159.0, 530.0, 161.784, 430.43396, 204.0, 419.0, 204.0, 419.0, 218.0, 424.84616, 218.0, 426.0, 221.0, 433.07547, 218.0, 443.0, 218.0, 443.0, 213.792, 539.2075, 173.0, 643.0, 173.0, 643.0, 159.0, 547.53845, 159.0, 546.0, 155.0" coords2="546.0, 155.0, 536.56604, 159.0, 530.0, 159.0, 530.0, 161.784, 430.43396, 204.0, 419.0, 204.0, 419.0, 218.0, 424.84616, 218.0, 426.0, 221.0, 433.07547, 218.0, 443.0, 218.0, 443.0, 213.792, 539.2075, 173.0, 643.0, 173.0, 643.0, 159.0, 547.53845, 159.0, 546.0, 155.0" shape="poly" alt=":Association" id="areadiagram_map_K.R.QtGFS_nyRRB5_default" href="Association_w_R_QtGFS_nyRRB0.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="417.0, 271.0, 417.0, 285.0, 580.0, 285.0, 580.0, 271.0" coords2="417.0, 271.0, 417.0, 285.0, 580.0, 285.0, 580.0, 271.0" shape="poly" alt=":Association" id="areadiagram_map_hbV.QtGFS_nyRRCN_default" href="Association_KbV_QtGFS_nyRRCI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="643, 116, 673, 188.0" coords2="643, 116, 673, 188.0" shape="rect" alt="Sensor proximity:Actor" id="areadiagram_map_EbDeQtGFS_nyRQ_k_default" href="Actor_nrDeQtGFS_nyRQ_j.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','643, 116, 673, 176',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=CMUeQtGFS_nyRQ8v/Sensor proximity/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '643, 116, 673, 176')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="272, 190, 419, 242.0" coords2="272, 190, 419, 242.0" shape="rect" alt="mengirim sinyal:Use Case" id="areadiagram_map_TjdeQtGFS_nyRQ_W_default" href="UseCase_8jdeQtGFS_nyRQ_M.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','272, 190, 419, 230',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_QKfbQdGFS_nyRQ_9.html/mengirim sinyal - Scenario/InteractionDiagram'),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=z7PuQtGFS_nyRQ8j/mengirim sinyal/TAClass'),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '272, 190, 419, 230'),showTransitorIcon('diagram', '272, 190, 419, 230')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="269, 117, 420, 169.0" coords2="269, 117, 420, 169.0" shape="rect" alt="mendeteksi adanya manusia:Use Case" id="areadiagram_map_VEteQtGFS_nyRQ.__default" href="UseCase_EEteQtGFS_nyRQ_1.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','269, 117, 420, 157',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_TUONJtGFS_nyRQuM.html/mendeteksi adanya manusia - Scenario/InteractionDiagram'),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=arjuQtGFS_nyRQ8c/mendeteksi adanya manusia/TAClass'),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '269, 117, 420, 157'),showTransitorIcon('diagram', '269, 117, 420, 157')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="269, 45, 419, 97.0" coords2="269, 45, 419, 97.0" shape="rect" alt="mendekati pintu otomatis:Use Case" id="areadiagram_map_JZVeQtGFS_nyRQ.o_default" href="UseCase_gZVeQtGFS_nyRQ_e.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','269, 45, 419, 85',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_mCSNJtGFS_nyRQsc.html/mendekati pintu otomatis - Scenario/InteractionDiagram'),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=5fXuQtGFS_nyRQ8g/mendekati pintu otomatis/TAClass'),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '269, 45, 419, 85'),showTransitorIcon('diagram', '269, 45, 419, 85')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="271, 258, 417, 310.0" coords2="271, 258, 417, 310.0" shape="rect" alt="membuka pintu:Use Case" id="areadiagram_map_u05eQtGFS_nyRQ.R_default" href="UseCase_jU5eQtGFS_nyRQ_H.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','271, 258, 417, 298',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_R847QdGFS_nyRRAi.html/membuka pintu - Scenario/InteractionDiagram'),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=Y3_uQtGFS_nyRQ8m/membuka pintu/TAClass'),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '271, 258, 417, 298'),showTransitorIcon('diagram', '271, 258, 417, 298')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="270, 327, 420, 379.0" coords2="270, 327, 420, 379.0" shape="rect" alt="masuk ke dalam:Use Case" id="areadiagram_map_bxpeQtGFS_nyRQ96_default" href="UseCase_wxpeQtGFS_nyRQ9u.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','270, 327, 420, 367',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_y3c7QdGFS_nyRRB3.html/masuk ke dalam - Scenario/InteractionDiagram'),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=nZgeQtGFS_nyRQ8p/masuk ke dalam/TAClass'),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '270, 327, 420, 367'),showTransitorIcon('diagram', '270, 327, 420, 367')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="18, 45, 48, 117.0" coords2="18, 45, 48, 117.0" shape="rect" alt="Manusia:Actor" id="areadiagram_map_ISJeQtGFS_nyRQ9h_default" href="Actor_tiJeQtGFS_nyRQ9g.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','18, 45, 48, 105',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=VtoeQtGFS_nyRQ8s/Manusia/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '18, 45, 48, 105')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="580, 245, 610, 317.0" coords2="580, 245, 610, 317.0" shape="rect" alt="Aktuator:Actor" id="areadiagram_map_q1ReQtGFS_nyRQ9S_default" href="Actor_Q1ReQtGFS_nyRQ9R.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','580, 245, 610, 305',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_PxiKQtGFS_nyRQ8T.html?shapeid=ymqeQtGFS_nyRQ81/Aktuator/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '580, 245, 610, 305')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="246, 2, 446, 394" coords2="246, 2, 446, 394" shape="rect" alt="System Pintu Otomatis:System" id="areadiagram_map_E8X.QtGFS_nyRRCm_default" href="System_k8X_QtGFS_nyRRCn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/System.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/System.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="System_k8X_QtGFS_nyRRCn.html" class="ItemLink">System Pintu Otomatis : System</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_Q1ReQtGFS_nyRQ9R.html" class="ItemLink">Aktuator : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_tiJeQtGFS_nyRQ9g.html" class="ItemLink">Manusia : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_nrDeQtGFS_nyRQ_j.html" class="ItemLink">Sensor proximity : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_wxpeQtGFS_nyRQ9u.html" class="ItemLink">masuk ke dalam : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_jU5eQtGFS_nyRQ_H.html" class="ItemLink">membuka pintu : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_gZVeQtGFS_nyRQ_e.html" class="ItemLink">mendekati pintu otomatis : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_EEteQtGFS_nyRQ_1.html" class="ItemLink">mendeteksi adanya manusia : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_8jdeQtGFS_nyRQ_M.html" class="ItemLink">mengirim sinyal : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Sistem Pintu Otomatis	</div>
+</body>
+</html>
